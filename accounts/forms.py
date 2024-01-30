@@ -1,9 +1,26 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm,SetPasswordForm,PasswordResetForm
-from .models import User
+from .models import User, Store
 from django import forms
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.hashers import check_password
+
+
+class StoreForm(forms.ModelForm):
+    store_description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    store_open = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
+    store_closed = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
+    class Meta:
+        model = Store
+        fields = [
+            'store_image',
+            'phonenumber',
+            'email',
+            'store_name',
+            'store_description',
+            'store_open',
+            'store_closed',
+        ]
 
 class CustomInitialForgotAccountsForm(PasswordResetForm):
     email = forms.EmailField(widget=forms.EmailInput(

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,Http404
-from .forms import UserForm, UserCreateForm, ForgotAccountForms,CustomInitialForgotAccountsForm,CustomPasswordChangeForm
+from .forms import UserForm, UserCreateForm, ForgotAccountForms,CustomInitialForgotAccountsForm,CustomPasswordChangeForm, StoreForm
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import authenticate, login, get_user_model,logout
 from django.contrib import messages
@@ -9,8 +9,40 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import user_is_authenticated
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.urls import reverse_lazy
+from .models import Store
 
+def createstore(request):
+    try:
+        Store.objects.get(store_seller_id = request.user)
+        return redirect('dashboardstore')
+    except Store.DoesNotExist:
+        form = StoreForm()    
+    if request.method == 'POST':
+        form = StoreForm(request.POST)
+        if form.is_valid():
+            store_image = form.cleaned_data.get('store_image')
+            phonenumber = form.cleaned_data.get('phonenumber')
+            email = form.cleaned_data.get('email')
+            store_name = form.cleaned_data.get('store_name')
+            store_description = form.cleaned_data.get('store_description')
+            store_open = form.cleaned_data.get('store_open')
+            store_closed = form.cleaned_data.get('store_closed')
+            store = Store(
+                store_seller_id = request.user,
+                store_image = store_image,
+                phonenumber = phonenumber,
+                email = email,
+                store_name = store_name,
+                store_description = store_description,
+                store_open = store_open,
+                store_closed = store_closed,
+            )            
+            store.save()
+            return redirect('dashboardstore')
+    return render(request, 'accounts/create_store.html', {'form':form})
+        
 
+    
 @login_required
 def logoutview (request):
     logout(request)
@@ -74,7 +106,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
         return super().form_valid(form)
     
 def SignUpView(request):
-    form = UserCreateForm()
+    form = UserCreateForm() 
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
@@ -106,3 +138,4 @@ def SignInView(request):
             login(request, user)
             return redirect('home')
     return render (request, 'accounts/signin.html', {'form' : form})
+

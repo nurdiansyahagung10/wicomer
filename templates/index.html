@@ -1,0 +1,702 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+{% block contains %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+  <style>
+    @font-face {
+      font-family: bahaus;
+      src: url(../static/BauhausRegular.ttf);
+    }
+    .navbar-brand{
+      font-family: bahaus !important;
+    }
+    
+  </style>
+<div class="container-xxl overflow-hidden" style="height: 100vh;">
+
+  <!-- navbar -->
+  <nav class="navbar z-3 position-sticky top-0 navbar-expand-lg bg-white mb-1">
+    <div class="container-fluid px-sm-2 px-0">
+      <span class="me-2 ms-1 d-lg-none d-block">
+        <i class="fa-light fa-bars-staggered"></i>
+      </span>
+
+      <a class="navbar-brand me-auto " href="#">Wicomer</a>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <form class="d-flex position-relative mx-auto  w-75" role="search">
+          <div class="position-absolute p-2 px-3"><span><i
+            class="fa-light fa-magnifying-glass"></i></span></div><input class="form-control ps-5 shadow-none border me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+      <div class="d-flex  align-items-center border p-1 rounded-5 ">
+        <span class="bg-light rounded-5 px-2">
+          <i class="fa-light fa-bell"></i>
+        </span>
+        <span class="rounded-5 px-2">
+          <i class="fa-light fa-heart"></i>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="row" style="height: 91%;">
+
+    <!-- sidebar -->
+    <div class="col-lg-3 pt-3 border-top d-sm-block d-none col-sm-2 overflow-y-scroll h-100">
+      <div class="w-75 d-lg-block d-none ">
+
+        <ul class="list-unstyled ">
+          <li class="mb-2">
+            <button
+              class="btn border-0 p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3 text-black bg-light" ><span><i
+                  class="fa-solid fa-house-blank"></i></span><span>Home</span></button>
+          </li>
+          <li class="mb-2">
+            <button
+              class="btn border-0 text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-magnifying-glass"></i></span><span>Discover</span></button>
+          </li>
+          <li class="mb-2">
+            <button
+              class="btn border-0 text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-file-pen"></i></span><span>Transaction</span></button>
+          </li>
+          <li class="mb-2">
+            <button
+              class="btn border-0 text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-message-lines"></i></span><span>Message</span></button>
+          </li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled ">
+          <li class="mb-2">
+            <button
+              class="btn border-0 text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i class="fa-light fa-hand-holding-box"></i></span><span>Store Follow</span></button>
+          </li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled overflow-hidden mb-0" id="sidenavcategory" style="height: 400px; transition: 0.3s;">
+          <li class="mb-2">
+            <button
+              class="btn border-0 text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i class="fa-light fa-grid-2"></i></span><span>Store Follow</span></button>
+          </li>          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Food</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Drink</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Fruit</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Ice Cream</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Raw Food</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Man Clothes</button>
+          </li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Man Accesories</button>
+          </li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Woman Clothes</button>
+          </li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Woman
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Hat</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Shoes</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Motorcycle and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Car and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Helmet and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Electronic</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Handphone and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Laptop and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Computer and
+              Accesories</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Skincare</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Makeup</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Basic Needs</button>
+          </li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Voucher and
+              Phonecredit</button></li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Top Up Games</button>
+          </li>
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3">Home Decoration</button>
+          </li>
+        </ul>
+        <ul class="list-unstyled">
+          <li class="mb-2"><button class="btn p-2 px-3 w-100 rounded-3 d-flex text-start gap-3"
+              onclick="categorysidenavrespon()"><span id="arrowresponsidnavcategory"
+                style="transition: 0.3s; transform: rotate(180deg);"><i class="fa-light fa-angle-up"></i></span><span
+                id="txtbtncategorysidenav">Show More</span></button></li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled ">
+          <li class="mb-2">
+            <button
+              class="btn text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-gear"></i></span><span>Setting</span></button>
+          </li>
+          <li class="mb-2">
+            <button
+              class="btn text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-circle-info"></i></span><span>Help</span></button>
+          </li>
+          <li class="mb-2">
+            <button
+              class="btn text-black p-2 px-3 w-100 rounded-3 d-flex align-items-center justify-content-start gap-3"><span><i
+                  class="fa-light fa-message-exclamation"></i></span><span>Feedback</span></button>
+          </li>
+        </ul>
+        <hr>
+        <ul class="list-unstyled ">
+          <li class="mb-2">
+            <div class="border rounded-3">
+              <div
+              class=" card-body z-2 border-0 w-100  text-white p-2 d-flex align-items-start justify-content-between">
+              <div class="d-flex align-items-center gap-1">
+                <div class="rounded-circle overflow-hidden" style="width: 35px; height: 35px; border: 2px solid white;">
+                  <img src="../media/product_images/wp8982689-artists-4k-wallpapers.jpg" style="object-fit: cover;"
+                    class="w-100 h-100" alt="">
+                </div>
+                <span class="d-flex flex-column text-black" style="line-height: 15px;">
+                  <span>sdfsdfhsd</span>
+                  <small style="font-size: 0.7rem;">Rekayasa</small>
+                </span>
+              </div>
+              <button class="btn btn-sm rounded-3  text-black py-1"><i class="fa-light fa-ellipsis-vertical"></i></button>
+            </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <script>
+      const categorysidenav = document.getElementById('sidenavcategory');
+      const txtbtncategorysidenav = document.getElementById('txtbtncategorysidenav');
+      const arrowresponsidnavcategory = document.getElementById('arrowresponsidnavcategory');
+      function categorysidenavrespon() {
+        if (categorysidenav.style.height == "auto") {
+          categorysidenav.style.height = "400px";
+          txtbtncategorysidenav.textContent = 'Show More';
+          arrowresponsidnavcategory.style.transform = 'rotate(0deg)';
+        } else {
+          categorysidenav.style.height = "auto";
+          txtbtncategorysidenav.textContent = 'Show Less';
+          arrowresponsidnavcategory.style.transform = 'rotate(180deg)';
+
+        }
+      };
+    </script>
+
+    <style>
+      /* Mengubah tampilan track/jalur dari scroll bar */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <!-- mainpage -->
+    <div class="col-lg-6 col-sm-8  border col-12 overflow-y-scroll  h-100">
+      <div class="d-flex bg-white pt-3 align-items-center justify-content-between" >
+        <ul style="list-style: none;" class="p-0 px-2 d-none btn-swip-kiri">
+          <li>
+            <span>
+              <i class="fa-light fa-chevron-left fs-6"></i>
+            </span>
+          </li>
+        </ul>
+        <div class="overflow-x-hidden p-0">
+          <ul class="d-flex  gap-3 p-0" style="list-style: none;">
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 p-2 px-3 text-white bg-black rounded-3 border-0 "
+                style="white-space: nowrap; cursor: pointer; " >Discover</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Food</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Drink</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Fruit</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Ice Cream</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Raw Food</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Man Clothes</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Man Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Woman Clothes</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Woman Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Hat</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Shoes</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Motorcycle and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Car and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Helmet and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Electronic</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Handphone and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Laptop and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Computer and Accesories</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Skincare</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Makeup</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Basic Needs</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Voucher and Phonecredit</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Top Up Games</button></li>
+            <li><button class="btn btn-sm  d-flex align-items-center gap-2 bg-light p-2 px-3 rounded-3 border-0"
+                style="white-space: nowrap; cursor: pointer;">Home Decoration</button></li>
+          </ul>
+        </div>
+        <ul style="list-style: none;" class="p-0 px-2 btn-swip-kanan">
+          <li>
+            <span>
+              <i class="fa-light fa-chevron-right fs-6"></i>
+            </span>
+          </li>
+        </ul> 
+      </div>
+      <hr class="p-0 m-0">
+      <div class="my-3">
+        <span>Discover for you</span>
+      </div>
+      
+      {% for product in Product %}
+        
+        
+      <div class="mb-3">
+        <div class="rounded-3 overflow-hidden position-relative">
+          <div
+            class=" card-body z-2 position-absolute border-0 w-100  text-white p-2 d-flex align-items-start justify-content-between"
+            style="background: linear-gradient(to bottom,rgba(0, 0, 0, 0.3), transparent);">
+            <div class="d-flex align-items-center gap-1">
+              <div class="rounded-circle overflow-hidden" style="width: 32px; height: 32px; ">
+                <img src="../media/product_images/wp8982689-artists-4k-wallpapers.jpg" style="object-fit: cover;"
+                  class="w-100 h-100" alt="">
+              </div>
+              <span class="d-flex flex-column" style="line-height: 15px;">
+                <span>sdfsdfhsd</span>
+                <small style="font-size: 0.7rem;">Rekayasa perangkat lunak b</small>
+              </span>
+            </div>
+            <button class="btn btn-sm rounded-3 border-white border text-white py-1">Follow</button>
+          </div>
+          {% with product.productimage_set.first as img  %}
+          <!-- Use alt text that describes the image -->
+
+          <img src="{{img.image.url}}" class="img-fluid" alt="">
+
+          
+          {% endwith %}
+        </div>
+        <div class="p-2  border-bottom d-flex align-items-center justify-content-between">
+          <span >Rp {{product.price}}</span>
+          <span class="text-secondary">No Preorder</span>
+        </div>
+        <div class="p-2">
+          <div class="d-flex align-items-center my-1 justify-content-between align-items-center">
+            <div>
+              <span class="h4 me-3"><i class="fa-light fa-heart"></i></span>
+              <span class="h4"><i class="fa-light fa-share"></i></span>
+            </div>
+            <div>
+              <a data-bs-toggle="offcanvas" href="#offcanvasBottom{{product.id}}d" role="button"
+              aria-controls="offcanvasBottom" class="text-decoration-none text-black">
+              <span class="h4"><i class="fa-light fa-bag-shopping"></i></span>
+              </a>
+            </div>
+          </div>
+          <span>
+            <span>0</span> Likes • <span><i class="fa-solid fa-star" style="color: goldenrod;"></i></span><span>
+              0.0</span> | <span class="text-secondary small">0</span><span class="text-secondary small"> Terjual</span>
+          </span><br>
+          <span id="text-span" class="text-secondary">
+            <span class="text-black">{{product}}</span> {{product.description}}
+          </span>
+          <small class="text-secondary">
+            <span>2</span> Days ago
+          </small>
+        </div>
+      </div>
+      {% endfor %}
+
+      <style>
+        #text-span {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      </style>
+      <script>
+
+
+
+        // Menentukan elemen yang akan digeser
+        let slider = document.querySelector('.overflow-x-hidden');
+
+        // Menentukan tombol navigasi
+        let btnPrev = document.querySelector('.btn-swip-kiri');
+        let btnNext = document.querySelector('.btn-swip-kanan');
+
+        let slideWidth = slider.querySelector('li').clientWidth;
+
+        // Menentukan fungsi untuk geser ke kiri
+        btnPrev.addEventListener('click', function () {
+          slider.scrollLeft -= slideWidth;
+          btnNext.classList.remove('d-none');
+
+          if (slider.scrollLeft == 0) {
+            btnPrev.classList.add('d-none');
+          }
+        });
+
+        // Menentukan fungsi untuk geser ke kanan
+        btnNext.addEventListener('click', function () {
+          slider.scrollLeft += slideWidth;
+          btnPrev.classList.remove('d-none');
+
+          if (slider.scrollLeft == 380) {
+            btnNext.classList.add('d-none');
+          }
+        });
+
+      </script>
+
+    </div>
+
+    <!-- siderightbar -->
+    <div class="col-lg-3 d-sm-block d-none pt-3 border-top col-sm-2 overflow-y-scroll h-100">
+      <div class="d-lg-block d-none">
+      <div class="card mb-3 rounded-3 border-0 text-black bg-light" >
+        <div class="card-body">
+          <h5 class="card-title">Join to wicostore</h5>
+          <p class="small">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor nemo nisi iure, voluptate,
+            quas laborum ut explicabo repudiandae voluptates quod amet facilis nam enim offic.</p>
+          <a href="#" class="btn border-0 text-white " style="background-color: #0e0d23;">Go somewhere</a>
+        </div>
+      </div>
+      <div class="card mb-3 rounded-3 border-0 text-black bg-light" >
+        <div class="card-body">
+          <h5 class="card-title">Product Favorite</h5>
+          <ul class="list-unstyled " id="sidenavcategory" >
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Food</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Drink</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Fruit</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Ice Cream</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Raw Food</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Man Clothes</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Man Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Woman Clothes</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Woman Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Hat</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Shoes</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Motorcycle and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Car and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Helmet and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Electronic</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Handphone and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Laptop and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Computer and
+                Accesories</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Skincare</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Makeup</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Basic Needs</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Voucher and
+                Phonecredit</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Top Up Games</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+            <li class="mb-2 text-black d-flex flex-column">
+              <span class="small text-secondary">Home Decoration</span>
+              <span>Product Name</span>
+              <span class="small text-secondary"><span>2k</span> selling</span>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  
+</div>
+<footer class="w-100 position-fixed d-sm-none z-3 bottom-0 ">
+  <div class="bg-white  d-flex align-items-center border-top justify-content-around p-2 gap-2 w-100">
+    <span>
+      <i
+      class="fa-solid fa-house-blank fs-5"></i>
+        </span>
+    <span>
+      <i
+      class="fa-light fa-magnifying-glass fs-5"> </i>   </span>
+    <span>
+      <i
+                  class="fa-light fa-file-pen fs-5"></i>
+    </span>
+    <span>
+      <i
+      class="fa-light fa-message-lines fs-5"></i>
+    </span>
+    <a href="{% url 'storecreate' %}">
+      <div class="rounded-circle overflow-hidden " style="width: 34px; height: 34px;">
+        <img src="{% static 'img/default profil.svg' %}" class="img-fluid " alt="">
+      </div>
+    </a>
+  </div>
+</footer>
+{% for product in Product %}
+
+<div class="offcanvas h-100 bg-transparent offcanvas-bottom" tabindex="-1" id="offcanvasBottom{{product.id}}d"
+  aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header ">
+    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body py-0  bg-white" style="border-top-left-radius: 1rem;">
+    <div class="container py-0">
+    <div class="d-flex alig-items-center z-3 bg-white justify-content-between py-3">
+      <div class="d-flex align-items-center gap-1">
+        <a href="{% url 'storecreate' %}">
+          <div class="rounded-circle overflow-hidden " style="width: 40px; height: 40px;">
+            <img src="{% static 'img/default profil.svg' %}" class="img-fluid " alt="">
+          </div>
+        </a>
+        <div class="d-flex flex-column">
+          <small class="fw-bold" style="line-height: 17px;">
+            {{product.store_id}}
+          </small>
+          <style>
+            @keyframes glowing {
+              0% {
+                transform: scale(1);
+                opacity: 0.3;
+              }
+
+              50% {
+                transform: scale(1.3);
+                opacity: 0.5;
+              }
+
+              100% {
+                transform: scale(1.6);
+                opacity: 0;
+              }
+            }
+
+            .circle {
+              position: relative;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #50ac5a;
+            }
+
+            .circle::before {
+              content: '';
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #50ac5a;
+              animation: glowing 2s infinite;
+            }
+          </style>
+          <small style="line-height: 17px;" class="d-flex align-items-center gap-1">
+            <div class="circle"></div>
+            <div style="color: #50ac5a;">store open</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <div>
+          <button class="btn border bg-white rounded-5 "><i class="fa-light fa-heart"></i></button>
+        </div>
+        <button class="btn text-white rounded-5  border-0" style="background-color: #0e0d23;">message</button>
+      </div>
+
+    </div>
+    <div class="w-100 mb-2 rounded-3 overflow-hidden">
+      {% with product.productimage_set.first as img  %}
+      <!-- Use alt text that describes the image -->
+      <img src="{{img.image.url}}" style="transition: 0.3s;" id="{{product}}image" class="img-fluid" alt="{{ product }}">
+      {% endwith %}
+
+    </div>
+    <div class="mb-2 pb-2 flex-nowrap d-flex align-items-center gap-2 overflow-x-auto">
+      {% for img in product.productimage_set.all   %}
+        <div id="{{img.image.url}}" class=" rounded-3 overflow-hidden position-relative" style="flex: 0 0 80px; padding-bottom: 80px; ">
+          <img src="{{img.image.url}}" class="w-100 h-100 position-absolute" style="object-fit: cover;" alt="">
+      </div>
+      <script>
+        document.getElementById('{{img.image.url}}').addEventListener('click', function(){
+          document.getElementById('{{product}}image').src = "{{img.image.url}}";
+        });
+      </script>
+      <!-- Use alt text that describes the image -->
+      {% endfor %}
+    </div>
+
+   
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <span class="fw-bold fs-5">
+          {{product.name_product}}
+        </span>
+      </div>
+      <div>
+        <button class="btn-sm btn d-flex align-items-center gap-1">
+          <span><i class="fa-solid fa-star" style="color: goldenrod;"></i></span>
+          <!-- Use a standard font size for rating -->
+          <span>4.5</span>
+        </button>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item small "><a href="#" class="text-secondary text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item small "><a href="#" class="text-secondary text-decoration-none">category</a></li>
+        <li class="breadcrumb-item small active" aria-current="page">{{product.category}}</li>
+      </ol>
+    </nav>
+    <hr>
+    <h6>About The Product</h6>
+    <p class="text-secondary">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, sunt dolor? Tempora
+      quidem iste animi iure quisquam quae, voluptatibus ipsa commodi aperiam? Quae facilis tempora fugiat magnam
+      laboriosam vero aut!</p>
+    <hr>
+    <div class="d-flex align-items-center justify-content-between">
+      <h6>About The Product</h6>
+      <h6 class="text-secondary">
+        0 sales
+      </h6>
+    </div>
+    <div class="w-100 position-sticky py-3 bg-white z-3 bottom-0 d-flex align-items-center justify-content-between">
+      <div>
+        <span class="text-secondary">Price</span>
+        <h5 class="fw-bold">Rp {{product.price}}</h5>
+      </div>
+      <a href="{% url 'orderproduct' Product=product %}" class="text-decoration-none">
+      <button class="btn border-0 text-white d-flex align-items-center gap-2 rounded-3"
+        style="background-color: #0e0d23;">
+        <span><i class="fa-light fa-bag-shopping"></i></span>
+        <span>buy</span>
+      </button>
+    </a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% endfor %}
+{% endblock contains %}

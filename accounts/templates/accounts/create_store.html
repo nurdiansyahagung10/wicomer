@@ -1,0 +1,30 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+
+{% block contains %}
+
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.errors %}
+
+                {% for field in form %}
+                
+                {% for error in field.errors  %}
+                    
+                <div class="alert  alert-dismissible fade show text-white" style="background-color:  #ff5555;"
+                    role="alert">
+                     {{error}}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+                                {% endfor %}
+
+                {% endfor %}
+
+                {% endif %}
+
+
+    {{form}}
+<button type="submit">submit</button>
+</form>
+{% endblock contains %}

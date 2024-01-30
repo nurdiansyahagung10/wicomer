@@ -31,7 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'order.apps.OrderConfig',
     'accounts.apps.AccountsConfig',
+    'product.apps.ProductConfig',
+    'dashboard.apps.DashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +72,10 @@ TEMPLATES = [
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
+             'libraries':{
+               # make your file entry here.
+               'filter_tags': 'order.filter',
+            }
         },
     },
 ]
@@ -82,7 +89,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": "icodb",
+        "NAME": "wicodb",
         "USER": "root",
         "PASSWORD": "kumahaweh123",
         "HOST": "127.0.0.1",
@@ -123,6 +130,10 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+import os
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -148,7 +159,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nurdiansyahagung385@gmail.com'
 EMAIL_HOST_PASSWORD = 'czry gqpq ccqu tgqf'
 
-PASSWORD_RESET_TIMEOUT = 7200 # 3 hari, dalam detik
+PASSWORD_RESET_TIMEOUT = 7200 
 
 SOCIAL_AUTH_REQUIRE_POST = True
 

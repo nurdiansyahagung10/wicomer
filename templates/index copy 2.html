@@ -1,0 +1,440 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+{% block contains %}
+
+<div class="container-fluid p-0">
+  <nav class="navbar navbar-expand-md nav-atas bg-white z-3 py-0 position-sticky " style="top:0px">
+    <div class="container-fluid p-1">
+      <div class="d-flex align-items-center justify-content-between bg-white flex-fill py-2 px-3">
+        <div>
+          <span class=" d-md-none">
+            <i class="fa-regular fa-bars-staggered"></i>
+          </span>
+          <a class="navbar-brand" href="#">wicomer</a>
+        </div>
+        <div class="d-flex d-md-none align-items-center border p-1 rounded-5 ">
+          <span class="bg-light rounded-5 px-2">
+            <i class="fa-regular fa-bell"></i>
+          </span>
+          <span class="rounded-5 px-2">
+            <i class="fa-regular fa-heart"></i>
+          </span>
+        </div>
+
+      </div>
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>  -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto gap-3 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+         
+        </ul>
+        <div class="d-flex d-none d-md-block align-items-center border p-1 rounded-5 ">
+          <span class="bg-light rounded-5 px-2">
+            <i class="fa-regular fa-bell"></i>
+          </span>
+          <span class="rounded-5 px-2">
+            <i class="fa-regular fa-heart"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header
+    style="background-image: url(http://127.0.0.1:8000/static/img/img-home.jpg); background-position: center; height: 300px; margin-top: -80px; padding-top: 272px; background-size: cover;  "
+    class="rounded-bottom-3 z-2 ">
+    <div style="width: 92%; transition: 0.1s; max-width: 600px;"
+      class="bg-white kotak-search shadow mx-auto p-2 px-4 gap-2 d-flex align-items-center rounded">
+      <i class="fa-regular fa-magnifying-glass"></i>
+      <input type="text" class="form-control border-0 shadow-none" placeholder="search...">
+      |
+      <div class="dropdown">
+        <a class="btn rounded-0 border-0 shadow-none p-0 dropdown-toggle" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          shot
+        </a>
+
+        <ul class="dropdown-menu mt-2 ">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <div class="px-3 mt-5 mb-3">
+    <h5>Category</h5>
+  </div>
+
+  <div class="d-flex align-items-center px-3 justify-content-between">
+    <ul style="list-style: none;" class="p-0 px-2 d-none btn-swip-kiri">
+      <li>
+        <span>
+          <i class="fa-solid fa-chevron-left fs-6"></i>
+        </span>
+      </li>
+    </ul>
+    <div class="overflow-x-hidden p-0">
+      <ul class="d-flex  gap-2 p-0 px-1" style="list-style: none;">
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0 bg-light"
+            style="white-space: nowrap; cursor: pointer;">Discover</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Food</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Drink</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Fruit</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Ice Cream</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Raw Food</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Man Clothes</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Man Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Woman Clothes</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Woman Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Hat</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Shoes</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Motorcycle and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Car and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Helmet and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Electronic</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Handphone and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Laptop and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Computer and Accesories</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Skincare</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Makeup</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Basic Needs</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Voucher and Phonecredit</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Top Up Games</button></li>
+        <li><button class="btn  d-flex align-items-center gap-2 p-2 px-3 rounded-5 border-0"
+            style="white-space: nowrap; cursor: pointer;">Home Decoration</button></li>
+      </ul>
+    </div>
+    <ul style="list-style: none;" class="p-0 px-2 btn-swip-kanan">
+      <li>
+        <span>
+          <i class="fa-solid fa-chevron-right fs-6"></i>
+        </span>
+      </li>
+    </ul>
+  </div>
+  <script>
+    // Menentukan elemen yang akan digeser
+    let slider = document.querySelector('.overflow-x-hidden');
+
+    // Menentukan tombol navigasi
+    let btnPrev = document.querySelector('.btn-swip-kiri');
+    let btnNext = document.querySelector('.btn-swip-kanan');
+
+    let slideWidth = slider.querySelector('li').clientWidth;
+
+    // Menentukan fungsi untuk geser ke kiri
+    btnPrev.addEventListener('click', function () {
+      slider.scrollLeft -= slideWidth;
+      btnNext.classList.remove('d-none');
+
+      if (slider.scrollLeft == 0) {
+        btnPrev.classList.add('d-none');
+      }
+    });
+
+    // Menentukan fungsi untuk geser ke kanan
+    btnNext.addEventListener('click', function () {
+      slider.scrollLeft += slideWidth;
+      btnPrev.classList.remove('d-none');
+
+      if (slider.scrollLeft == 380) {
+        btnNext.classList.add('d-none');
+      }
+    });
+
+  </script>
+  <div class="px-3 mt-3">
+    <h5>Discover</h5>
+  </div>
+  <main style="overflow-x: hidden;">
+    <div class=" p-0 px-2 d-grid" style="  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));" >
+      {% for product in Product %}
+      <div class="p-2">
+        <div class="rounded-3 shadow-sm p-1">
+          <a data-bs-toggle="offcanvas" href="#offcanvasBottom{{product.id}}d" role="button"
+            aria-controls="offcanvasBottom" class="text-decoration-none text-black">
+            <div class=" rounded-3 grid-div position-relative overflow-hidden" style="padding-bottom: 80%;">
+              <div class="position-absolute z-2 w-100 p-2">
+                <div class="d-flex align-items-start justify-content-end">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center"
+                    style="width:28px; height: 28px; backdrop-filter: blur(20px); background-color: rgba(0, 0, 0, 0.205);">
+                    <span>
+                      <i class="fa-regular fa-heart text-white"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper mySwiper w-100 h-100 position-absolute" style="object-fit: cover;">
+                <div class="swiper-wrapper">
+                  {% with product.productimage_set.first as img %}
+                  <!-- Use alt text that describes the image -->
+                  <div class="border rounded-3 overflow-hidden position-relative" style="flex: 0 0 100%; padding-bottom: 100%;">
+                    <img src="{{img.image.url}}" class="w-100 h-100 position-absolute" style="object-fit: cover;" alt="">
+                  </div>
+                  {% endwith %}
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-0 px-2 py-3 w-100">
+              <span class="fw-bold h6">Rp {{ product.price }}</span> <br>
+
+              <div>
+                <span>{{product.name_product}}</span>
+
+              </div>
+              <!-- Use a standard font size for product name -->
+              <!-- Use a larger, bold font size for product price -->
+              <div class="d-flex">
+                <div>
+                  <span><i class="fa-solid fa-star" style="color: goldenrod;"></i></span>
+                  <!-- Use a standard font size for rating -->
+                  <span class="small">4.5</span>
+                  |
+                  <!-- Use a smaller, secondary color for sold count -->
+                  <span class="text-secondary small">123 terjual</span>
+                </div>
+
+              </div>
+
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+
+
+
+
+      <!-- Repeat .card for as many cards as you need -->
+    </div>
+  </main>
+
+  <footer class="w-100 position-sticky d-sm-none z-3 bottom-0 ">
+    <div class="bg-white  d-flex align-items-center border-top justify-content-around p-2 gap-2 w-100">
+      <span>
+        <i class="fa-solid fa-house-blank fs-5"></i>
+      </span>
+      <span>
+        <i class="fa-regular fa-money-check-pen fs-5 text-secondary"></i>
+      </span>
+      <span>
+        <i class="fa-regular fa-message-dots fs-5 text-secondary"></i>
+      </span>
+      <a href="{% url 'storecreate' %}">
+        <div class="rounded-circle overflow-hidden " style="width: 34px; height: 34px;">
+          <img src="{% static 'img/default profil.svg' %}" class="img-fluid " alt="">
+        </div>
+      </a>
+    </div>
+  </footer>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    window.addEventListener('scroll', function () {
+      if (window.innerWidth < 768) {
+        var fromTop = window.scrollY;
+        if (fromTop != 0) {
+          document.querySelector(".nav-atas").classList.add('border-bottom');
+        } else {
+          document.querySelector(".nav-atas").classList.remove('border-bottom');
+
+        }
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      document.querySelector(".nav-atas").classList.add('bg-white');
+    });
+
+  </script>
+
+</div>
+
+{% for product in Product %}
+
+<div class="offcanvas h-100 bg-transparent offcanvas-bottom" tabindex="-1" id="offcanvasBottom{{product.id}}d"
+  aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header ">
+    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body py-0  bg-white" style="border-top-left-radius: 1rem;">
+    <div class="container py-0">
+    <div class="d-flex alig-items-center z-3 bg-white justify-content-between py-3">
+      <div class="d-flex align-items-center gap-1">
+        <a href="{% url 'storecreate' %}">
+          <div class="rounded-circle overflow-hidden " style="width: 40px; height: 40px;">
+            <img src="{% static 'img/default profil.svg' %}" class="img-fluid " alt="">
+          </div>
+        </a>
+        <div class="d-flex flex-column">
+          <small class="fw-bold" style="line-height: 17px;">
+            {{product.store_id}}
+          </small>
+          <style>
+            @keyframes glowing {
+              0% {
+                transform: scale(1);
+                opacity: 0.3;
+              }
+
+              50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+              }
+
+              100% {
+                transform: scale(1.6);
+                opacity: 0;
+              }
+            }
+
+            .circle {
+              position: relative;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #50ac5a;
+            }
+
+            .circle::before {
+              content: '';
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #50ac5a;
+              animation: glowing 2s infinite;
+            }
+          </style>
+          <small style="line-height: 17px;" class="d-flex align-items-center gap-1">
+            <div class="circle"></div>
+            <div style="color: #50ac5a;">store open</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <div>
+          <button class="btn border bg-white rounded-5 "><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <button class="btn text-white rounded-5  border-0" style="background-color: #0e0d23;">message</button>
+      </div>
+
+    </div>
+    <div class="w-100 mb-2 rounded-3 overflow-hidden">
+      {% with product.productimage_set.first as img  %}
+      <!-- Use alt text that describes the image -->
+      <img src="{{img.image.url}}" style="transition: 0.3s;" id="{{product}}image" class="img-fluid" alt="{{ product }}">
+      {% endwith %}
+
+    </div>
+    <div class="mb-2 pb-2 flex-nowrap d-flex align-items-center gap-2 overflow-x-auto">
+      {% for img in product.productimage_set.all   %}
+        <div id="{{img.image.url}}" class="border rounded-3 overflow-hidden position-relative" style="flex: 0 0 80px; padding-bottom: 80px; border-style: dashed !important;">
+          <img src="{{img.image.url}}" class="w-100 h-100 position-absolute" style="object-fit: cover;" alt="">
+      </div>
+      <script>
+        document.getElementById('{{img.image.url}}').addEventListener('click', function(){
+          document.getElementById('{{product}}image').src = "{{img.image.url}}";
+        });
+      </script>
+      <!-- Use alt text that describes the image -->
+      {% endfor %}
+    </div>
+
+   
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <span class="fw-bold fs-5">
+          {{product.name_product}}
+        </span>
+      </div>
+      <div>
+        <button class="btn-sm btn d-flex align-items-center gap-1">
+          <span><i class="fa-solid fa-star" style="color: goldenrod;"></i></span>
+          <!-- Use a standard font size for rating -->
+          <span>4.5</span>
+        </button>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item small "><a href="#" class="text-secondary text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item small "><a href="#" class="text-secondary text-decoration-none">category</a></li>
+        <li class="breadcrumb-item small active" aria-current="page">{{product.category}}</li>
+      </ol>
+    </nav>
+    <hr>
+    <h6>About The Product</h6>
+    <p class="text-secondary">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, sunt dolor? Tempora
+      quidem iste animi iure quisquam quae, voluptatibus ipsa commodi aperiam? Quae facilis tempora fugiat magnam
+      laboriosam vero aut!</p>
+    <hr>
+    <div class="d-flex align-items-center justify-content-between">
+      <h6>About The Product</h6>
+      <h6 class="text-secondary">
+        0 sales
+      </h6>
+    </div>
+    <div class="w-100 position-sticky py-3 bg-white z-3 bottom-0 d-flex align-items-center justify-content-between">
+      <div>
+        <span class="text-secondary">Price</span>
+        <h5 class="fw-bold">Rp {{product.price}}</h5>
+      </div>
+      <a href="{% url 'orderproduct' Product=product %}" class="text-decoration-none">
+      <button class="btn border-0 text-white d-flex align-items-center gap-2 rounded-3"
+        style="background-color: #0e0d23;">
+        <span><i class="fa-regular fa-bag-shopping"></i></span>
+        <span>buy</span>
+      </button>
+    </a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% endfor %}
+{% endblock contains %}

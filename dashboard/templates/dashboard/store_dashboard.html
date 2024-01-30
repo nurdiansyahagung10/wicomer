@@ -1,0 +1,17 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+
+{% block contains %}
+
+
+    {{store}}
+
+    
+    {% for row in spesification  %}
+        {{row}},
+        
+    {% endfor %}
+        
+    
+
+{% endblock contains %}
