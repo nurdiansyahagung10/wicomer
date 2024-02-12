@@ -90,8 +90,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": "wicodb",
-        "USER": "root",
+        "NAME": "nurdiansyahagung$wicodb",
+        "USER": "nurdiansyahagung",
         "PASSWORD": "kumahaweh123",
         "HOST": "nurdiansyahagung10.mysql.pythonanywhere-services.com",
     }
