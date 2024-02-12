@@ -1,0 +1,234 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+{% block contains %}
+{% load filter_tags %}
+
+
+<style>
+    .form-control:focus {
+        border: 1px solid rgba(234, 100, 217, 0.4) !important;
+        box-shadow: 0 0 0 4px rgba(234, 100, 217, 0.1) !important;
+    }
+</style>
+
+
+<div style="z-index: 999; background-color: #292b31;" id="loadingAnimationcontainer" class="p-5  position-fixed d-flex align-items-center justify-content-center w-100 h-100 " >
+    <div class="rounded-circle overflow-hidden " style="max-width: 400px; max-height: 400px;">
+        <div id="loadingAnimation" style="object-fit: cover;"></div>
+    </div>
+    
+</div>
+
+
+<div style="height: 100vh;">
+    <div class="container h-100">
+        <div  class="d-flex flex-column h-100">
+        
+            <div class="d-flex py-3 px-2 position-sticky top-0 align-items-center justify-content-between" style="background-color: #292b31;">
+                <button type="button" class="btn text-white px-0 border-0">
+                    <i class="fa-regular fs-5 fa-arrow-left"></i>
+                </button>
+                <span class="fs-5 " style="font-weight: 500;" id="text-nav">Order Status</span>
+            </div>
+
+            <div class="py-3 border-bottom px-2  ">
+                <div class="mb-3 d-flex align-items-center justify-content-between w-100">
+                    <span class="" style="font-weight: 500;">Information</span>
+                </div>
+                <table class="w-100" >
+                    <tbody style="vertical-align: top;">
+                        <tr>
+                            <td class="pb-2">{{order.shipping_information}}</td>
+                            <td class="pb-2 text-end small text-secondary" >{{order.updated_at}}</td>
+                        </tr>
+                        <tr>
+                            <td>waktu pemesanan</td>
+                            <td class="text-end small text-secondary">{{order.created_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+
+            </div>
+            <div class="py-3 border-bottom px-2  ">
+                <div class="mb-3 d-flex align-items-center justify-content-between w-100">
+                    <span style="font-weight: 500;">Preorder</span>
+                    <input type="checkbox" name="preorder" disabled >
+                </div>
+                <div
+                    class="p-2 d-flex align-items-center  justify-content-between border rounded-3">
+                        <span class="text-center w-100">none</span>
+                </div>
+
+            </div>
+
+            <div class="py-3 px-2 border-bottom ">
+                <div class="mb-3 d-flex align-items-center justify-content-between w-100">
+                    <span style="font-weight: 500;">Pengiriman</span>
+                </div>
+                <div
+                    class="p-3 d-flex flex-column border-0 rounded-3" style="background-color: #363841;">
+                            <span>Langsung</span>
+                            <span class="small " style="color: #e38035;;">Langsung di kirim ke {{order.province}}</span>
+                </div>
+
+            </div>
+
+            <div class="py-3 px-2  border-bottom">
+                <span style="font-weight: 500;">Track Pengiriman</span>
+                <div class="d-flex mt-3 align-items-center gap-2"><span class="fs-5"><i class="fa-light fa-location-crosshairs"></i></span> <span class="fs-5">{{order.product.store_id.location_store.school_id}} {{order.product.store_id.location_store.school_id.school_class_name}}</span></div>
+                <div style="border-left: 1px dashed white; margin-left: 9px; padding-left: 9px;"  class="py-2 my-1">
+                    <small class="text-secondary">{{ order.product.store_id.location_store.detail_address }}</small>
+                </div>
+                <div class="d-flex align-items-center gap-2"><span class="fs-5"><i class="fa-regular fa-location-crosshairs"></i></span> <span class="fs-5">{{order.address_buyer.school_id}} {{order.address_buyer.school_id.school_class_name}}</span></div>
+                <div style="margin-left: 9px; padding-left: 9px;"  class="py-2 my-1">
+                    <small class="text-secondary">{{order.address_buyer.detail_address}}</small>
+                </div>
+                
+            </div>
+
+            
+            <div class="py-3 px-2 d-flex align-items-start justify-content-between  border-bottom">
+                <div class="d-flex flex-column">
+                    <span style="font-weight: 500;">{{order.product}}</span>
+                    <span>Rp {{order.product.price_product}}</span>
+                    <div class="d-flex gap-1">
+                        <div class="d-flex flex-column">
+
+                            {% for spesification in order.spesification|slice:"-1"|split:"," %}
+                            <small>
+                                {{spesification}}
+
+                            </small>
+
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex flex-column">
+
+                            {% for value in order.spesificationvalue|slice:"-1"|split:"," %}
+                            <small>: {{value}}</small>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+                {% with order.product.productimage_set.first as image %}
+                <div id="{{image.name_image.url}}" class=" rounded-3 overflow-hidden position-relative"
+                    style="flex: 0 0 80px; padding-bottom: 80px; ">
+                    <img src="{{image.name_image.url}}" class="w-100 h-100 position-absolute" style="object-fit: cover;"
+                        alt="">
+                </div>
+                <script>
+                    document.getElementById('{{image.name_image.url}}').addEventListener('click', function () {
+                        document.getElementById('{{product}}image').src = "{{image.name_image.url}}";
+                    });
+                </script>
+                <!-- Use alt text that describes the image -->
+                {% endwith %}
+            </div>
+
+
+
+            <div class="p-3 mt-3 rounded-3 d-flex flex-column border">
+                <span class=" mb-1" style="font-weight: 500;">Ringkasan pembayaran</span>
+                <div style="border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dee2e6;">
+                    <div class="d-flex align-items-center justify-content-between my-2">
+                        <small>Price</small>
+                        <small>{{order.product.price_product}}</small>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between my-2">
+                        <small>Quantity</small>
+                        <small>{{order.quantity_order}}</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <span>Total Pembayaran</span>
+                    <input type="text" name="totalharga" style="outline: none; text-align: end;" readonly class="totalprice p-0 flex-fill bg-transparent border-0 text-white">
+
+                </div>
+
+            </div>
+
+            <div class=" px-2 flex-fill d-flex align-items-end justify-content-between">
+
+            </div>
+
+        
+            <div class=" pt-3 pb-2 mt-3 border-top z-3 " style="background-color: #292b31;">
+                <div
+                class=" card-body z-2 border-0 w-100  text-white  d-flex align-items-start justify-content-between">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="rounded-circle overflow-hidden"
+                    style="width: 35px; height: 35px; ">
+                    <img src="{% static 'img/img-home.jpg' %}" style="object-fit: cover;"
+                      class="w-100 h-100" alt="">
+                  </div>
+                  <span class="d-flex flex-column text-white" style="line-height: 15px;">
+                    <span>sdfsdfhsd</span>
+                    <small style="font-size: 0.7rem;">Rekayasa</small>
+                  </span>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm  rounded-circle border text-white py-1"><i class="fa-light fa-message-lines "></i></button>
+                    <button class="btn btn-sm rounded-3  border-0 py-1 text-white bg-black" >Batalkan</button>
+    
+                </div>
+              </div>
+              <div class=" w-100 mt-2 p-3 text-white mb-2 small rounded-3" style="background-color: #363841;">
+                <span class="small">kamu hanya bisa membatalkan pesanan 5 menit setelah barang di pesan </span>
+            </div>
+            </div>
+
+            <div class=" py-3 mt-3 border-top z-3 position-sticky bottom-0" style="background-color: #292b31;">
+                
+                {% if order.shipping_information == 'Waiting Seller Approved' %}
+                <input type="hidden" name="new_information" value="Aproved, Waiting Seller Sending">
+                <button class="w-100 btn bg-black text-white border-0 rounded-5" type="submit" 
+                     onclick="submit_btn()">
+                    Approved Order                    
+                </button>
+                {% elif order.shipping_information == 'Aproved, Waiting Seller Sending' %}
+                <input type="hidden" name="new_information" value="Sending, waiting for the product to arrive ">
+                <button class="w-100 btn bg-black text-white border-0 rounded-5" type="submit" 
+                     onclick="submit_btn()">
+                    Send order                    
+                </button>                
+                {% elif order.shipping_information == 'Sending, waiting for the product to arrive' %}
+                <button class="w-100 btn bg-black text-white border-0 rounded-5" type="button" 
+                     onclick="submit_btn()">
+                    Send order                    
+                </button>                
+                {% endif %}
+                    
+            </div>
+            </div>
+
+              
+        </form>
+    </div>
+</div>
+
+
+<script>
+    setTimeout(function() {
+        // Kode yang ingin Anda jalankan setelah delay
+        document.getElementById('loadingAnimationcontainer').classList.add('d-none');
+    }, 3000);
+
+    
+    lottie.loadAnimation({
+        container: document.getElementById('loadingAnimation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,            
+        path: '{% static "waitorder.json" %}' // Lokasi file JSON animasi
+    });
+   
+    const totalprice = document.querySelector('.totalprice');
+    var akumtotalprice = eval(`{{order.product.price_product}} * {{order.quantity_order}}`);
+    totalprice.value = akumtotalprice;
+
+</script>
+{% endblock contains %}

@@ -1,63 +1,14 @@
 {% extends 'layout\base.html' %}
 {% load static %}
 {% block contains %}
-<nav class="navbar navbar-expand-md nav-atas bg-white z-3 py-0 position-sticky " style="top:0px">
-    <div class="container-fluid p-1">
-      <div class="d-flex align-items-center justify-content-between bg-white flex-fill py-2 px-3">
-        <div>
-          <span class=" d-md-none">
-            <i class="fa-regular fa-bars-staggered"></i>
-          </span>
-          <a class="navbar-brand" href="#">wicomer</a>
-        </div>
-        <div class="d-flex d-md-none align-items-center border p-1 rounded-5 ">
-          <span class="bg-light rounded-5 px-2">
-            <i class="fa-regular fa-bell"></i>
-          </span>
-          <span class="rounded-5 px-2">
-            <i class="fa-regular fa-heart"></i>
-          </span>
-        </div>
-
-      </div>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>  -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto gap-3 mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">History</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Chat</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-         
-        </ul>
-        <div class="d-flex d-none d-md-block align-items-center border p-1 rounded-5 ">
-          <span class="bg-light rounded-5 px-2">
-            <i class="fa-regular fa-bell"></i>
-          </span>
-          <span class="rounded-5 px-2">
-            <i class="fa-regular fa-heart"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-  </nav>
 
 <style>
       
-    .form-control:focus,
-    .form-select:focus {
-        border: 1px solid rgba(234, 100, 217, 0.4) !important;
-        box-shadow: 0 0 0 4px rgba(234, 100, 217, 0.1) !important;
+    .form-control:focus,.form-select:focus ,.form-check-input:checked,.form-check-input:focus{
+        border: 1px solid #e380356c !important;
+        box-shadow:  0 0 0 4px #e380351e !important;
     }
+
 
     .form-control,
     .form-select {
@@ -68,18 +19,29 @@
         height: 100%;
         padding: 0;
     }
+
+    input[type="file"]::-webkit-file-upload-button {
+        background-color: black !important;
+        color: white;
+      }
 </style>
 <div class="container">
+    <div class="d-flex py-3 px-2 z-3 position-sticky top-0 text-white  align-items-center justify-content-between" style="background-color: #292b31;">
+        <button type="button" class="btn text-white  px-0 border-0">
+            <i class="fa-regular fs-5 fa-arrow-left"></i>
+        </button>
+        <span class="fs-5" style="font-weight: 500;" id="text-nav">Add Product</span>
+    </div>
     <form class="mt-2" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         <div class="mb-3  w-100  ">
             <label for="exampleInputEmail1" class="form-label">{{form.image_product.label_tag}}</label>
             {{form.image_product}}
-            <div id="emailHelp" class="form-text">The image that is entered first will be the cover</div>
+            <div id="emailHelp" class="form-text" style="color: #e38035;">The image that is entered first will be the cover</div>
         </div>
         
         <div class="d-flex flex-nowrap pb-2 mb-2 overflow-x-auto gap-3" id="preview">
-            <div class="border rounded-3  overflow-hidden position-relative" style="flex: 0 0 120px; padding-bottom: 120px; border-style: dashed !important;">
+            <div class="border border-secondary rounded-3  overflow-hidden position-relative" style="flex: 0 0 120px; padding-bottom: 120px; border-style: dashed !important;">
                 <div class="w-100 h-100 position-absolute d-flex align-items-center flex-column justify-content-center">
                     <span class="small">Preview</span>
                     <span class="small">Image</span> 
@@ -98,7 +60,7 @@ document.querySelector('input[type="file"]').addEventListener('change', function
         reader.onload = function (e) {
             let $img = e.target.result;
             preview.innerHTML += `
-                <div class="border rounded-3 overflow-hidden position-relative" style="flex: 0 0 120px; padding-bottom: 120px; border-style: dashed !important;">
+                <div class="border border-secondary rounded-3 overflow-hidden position-relative" style="flex: 0 0 120px; padding-bottom: 120px; border-style: dashed !important;">
                     <img src="${$img}" class="w-100 h-100 position-absolute" style="object-fit: cover;" alt="">
                 </div>
             `;
@@ -118,34 +80,62 @@ document.querySelector('input[type="file"]').addEventListener('change', function
                 {{form.name_product}}
             </div>
             <div class="flex-fill">
-                <label for="exampleInputEmail1" class="form-label">{{form.category.label_tag}}</label>
-                {{form.category}}
+                <label for="exampleInputEmail1" class="form-label">{{form.category_product.label_tag}}</label>
+                {{form.category_product}}
             </div>
         </div>
         <div class="mb-3 d-flex w-100 gap-2 align-items-center">
             <div class="flex-fill">
-                <label for="exampleInputEmail1" class="form-label">{{form.price.label_tag}}</label>
-                {{form.price}}
+                <label for="exampleInputEmail1" class="form-label">{{form.price_product.label_tag}}</label>
+                {{form.price_product}}
             </div>
             <div class="flex-fill">
-                <label for="exampleInputEmail1" class="form-label">{{form.qty.label_tag}}</label>
-                {{form.qty}}
+                <label for="exampleInputEmail1" class="form-label">{{form.quantity_product.label_tag}}</label>
+                {{form.quantity_product}}
             </div>
         </div>
         <div class="mb-3  w-100  ">
             <label for="exampleInputEmail1" class="form-label">Spesifikasi Product:</label>
             <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-                aria-controls="offcanvasBottom" class="form-control bg-light">Add</button>
+                aria-controls="offcanvasBottom" class="form-control border-1 text-white bg-transparent">Add</button>
         </div>
         
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">{{form.description.label_tag}}</label>
-            {{form.description}}
+            <label for="exampleInputEmail1" class="form-label">{{form.kind.label_tag}}</label>
+            {{form.kind}}
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Pre Order</label>
+            <input type="checkbox" name="" id="preorder">
+        </div>
+
+        <div class="mb-3 d-none" id="preorderdate">
+            <label for="exampleInputEmail1" class="form-label">{{form.pre_order_date.label_tag}}</label>
+            {{form.pre_order_date}}
+        </div>
+
+        <script>
+            const preoder = document.getElementById('preorder');
+
+            preorder.addEventListener('input', function(){
+                if(preorder.checked == true){
+                    document.getElementById('preorderdate').classList.remove('d-none');                
+                }else{
+                    document.getElementById('preorderdate').classList.add('d-none');                    
+                }
+
+            });
+        </script>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">{{form.description_product.label_tag}}</label>
+            {{form.description_product}}
         </div>
         
         
+        
 
-        <button type="submit" class="btn w-100 text-white mb-3 border-0" style="background-color: #0e0d23;">Submit</button>
+        <button type="submit" class="btn w-100 text-white my-3 border-0 bg-black" >Submit</button>
 
         <div class="offcanvas bg-transparent offcanvas-bottom h-100" tabindex="-1" id="offcanvasBottom"
             aria-labelledby="offcanvasBottomLabel">
@@ -153,9 +143,9 @@ document.querySelector('input[type="file"]').addEventListener('change', function
                 <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body bg-white small" style="border-top-left-radius: 20px;">
+            <div class="offcanvas-body small" style="border-top-left-radius: 20px; background-color: #292b31;">
                 <div class="container py-4 ">
-                    <div class="addmorediv">
+                    <div class="addmorediv text-white">
 
                         <h2>Spesification</h2>
                         <div class="mb-3 mt-3 d-flex w-100 gap-2 align-items-center">
@@ -170,7 +160,7 @@ document.querySelector('input[type="file"]').addEventListener('change', function
                         </div>
                     </div>
 
-                    <button type="button" onclick="addmore()">add more</button>
+                    <button type="button" class="btn bg-black text-white" onclick="addmore()">add more</button>
                 </div>
             </div>
         </div>

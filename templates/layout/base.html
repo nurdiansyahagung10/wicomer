@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +8,25 @@
     {% include 'layout/snippets/css.html' %}
     {% include 'layout/snippets/jstop.html' %}
 </head>
-<body class="bg-white">
+
+
+<div style="z-index: 999; " id="loadingAnimationbase" class="   position-fixed d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-white" >
+    <h1 class="fw-bold" style="font-family: bahaus;">wicomer</h1>
+</div>
+
+
+<body style="background-color: #292b31; color: white !important;">
     
     <style>
+        @font-face {
+            font-family: bahaus;
+            src: url(http://127.0.0.1:8000/static/BauhausRegular.ttf);
+          }
+        
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
             scroll-behavior: smooth;
+            font-weight: 300 !important;
 
         }
         
@@ -27,7 +40,22 @@
         
     {% endblock contains %}
             
-
+    
     {% include 'layout/snippets/jsbottom.html' %}
-</body>
+</body >
 </html>
+
+<script>
+  
+
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector("body").style.visibility = "hidden";
+            document.querySelector("#loadingAnimationbase").style.visibility = "visible";
+        } else {
+            document.querySelector("#loadingAnimationbase").style.visibility = "hidden";
+            document.querySelector("body").style.visibility = "visible";
+        }
+    };
+  
+</script>

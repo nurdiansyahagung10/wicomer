@@ -8,19 +8,18 @@ from django.contrib.auth.hashers import check_password
 
 class StoreForm(forms.ModelForm):
     store_description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-    store_open = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
-    store_closed = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
+    store_open_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
+    store_closed_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%H:%M'}))
     class Meta:
         model = Store
         fields = [
-            'store_image',
-            'phonenumber',
-            'email',
-            'store_name',
-            'store_description',
-            'store_open',
-            'store_closed',
-        ]
+    'phone_number_store',
+    'email_store',
+    'store_name',
+    'store_description',
+    'store_open_time', 
+    'store_closed_time', 
+    ]
 
 class CustomInitialForgotAccountsForm(PasswordResetForm):
     email = forms.EmailField(widget=forms.EmailInput(
@@ -62,9 +61,9 @@ class CustomPasswordChangeForm(SetPasswordForm):
 
 class UserForm (forms.Form):
     username = forms.CharField(widget=forms.TextInput(
-        attrs={"class": "form-control   border ", "aria-describedby": "emailHelp"}), required=True, max_length=100)
+        attrs={"class": "form-control    border ", "aria-describedby": "emailHelp"}), required=True, max_length=100)
     password = forms.CharField(required=True, widget=forms.PasswordInput(
-        attrs={'class': 'form-control   border '}))
+        attrs={'class': 'form-control    border '}))
     rememberme = forms.BooleanField(required=False, widget=forms.CheckboxInput(
         attrs={'class': 'form-check-input', 'id': 'exampleCheck1'}))
     def clean(self):

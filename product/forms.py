@@ -8,15 +8,18 @@ class ProductForm(forms.ModelForm):
         attrs={"class": "form-control border"}), required=True, max_length=100)
     spesification = forms.CharField(widget=forms.TextInput(
         attrs={"class": "form-control border"}),  max_length=100)
-    qty = forms.CharField(widget=forms.TextInput(
+    quantity_product = forms.CharField(widget=forms.TextInput(
         attrs={"class": "form-control border"}), required=True, max_length=100)
-    price = forms.CharField(widget=forms.TextInput(
+    price_product = forms.CharField(widget=forms.TextInput(
         attrs={"class": "form-control border"}), required=True, max_length=100)
     valuespesification = forms.CharField(widget=forms.TextInput(
         attrs={"class": "form-control border"}),  max_length=200)
-    category = forms.ChoiceField(widget=forms.Select(attrs={"class": "form-select border"}), choices=product.CATEGORY_CHOICES)
+    category_product = forms.ChoiceField(widget=forms.Select(attrs={"class": "form-select border"}), choices=product.CATEGORY_CHOICES)
+    kind = forms.ChoiceField(widget=forms.Select(attrs={"class": "form-select border"}), choices=product.KIND_CHOICHES)
+    pre_order_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    description_product = forms.Textarea()
     image_product = MultiFileField(min_num=1, max_num=10, max_file_size=1024*1024*5, validators=[FileExtensionValidator(allowed_extensions=['jpg','jpeg','png'])])
-    description = forms.Textarea( )
+    
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
         self.fields['image_product'].widget.attrs.update({
@@ -25,12 +28,11 @@ class ProductForm(forms.ModelForm):
             'style': 'padding: 6px 9px !important'
 
         })
-        self.fields['description'].widget.attrs.update({
+        self.fields['description_product'].widget.attrs.update({
             'class': 'form-control border ',
             'style': 'resize: none;',
         })
-        
+
     class Meta:
         model = product
-        fields = ['name_product', 'description', 'category',  'price','qty']
-
+        fields = ['image_product', 'description_product']

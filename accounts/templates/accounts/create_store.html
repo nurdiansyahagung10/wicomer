@@ -1,30 +1,121 @@
 {% extends 'layout\base.html' %}
 {% load static %}
-
 {% block contains %}
+<div class="d-flex py-3 px-2 position-sticky top-0 bg-white align-items-center justify-content-between">
+    <button type="button" class="btn px-0 border-0">
+        <i class="fa-regular fs-5 fa-arrow-left"></i>
+    </button>
+    <span class="fs-5 fw-bold" id="text-nav">Custom Order</span>
+</div>
 
-<form  method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if form.errors %}
+<style>
+      
+    .form-control:focus,
+    .form-select:focus {
+        border: 1px solid rgba(234, 100, 217, 0.4) !important;
+        box-shadow: 0 0 0 4px rgba(234, 100, 217, 0.1) !important;
+    }
 
-                {% for field in form %}
-                
-                {% for error in field.errors  %}
-                    
-                <div class="alert  alert-dismissible fade show text-white" style="background-color:  #ff5555;"
-                    role="alert">
-                     {{error}}
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                        aria-label="Close"></button>
+    .form-control,
+    .form-select {
+        padding: 9px !important;
+    }
+
+    #id_image_product {
+        height: 100%;
+        padding: 0;
+    }
+</style>
+{{form.errors}}
+<div class="container">
+    <form class="mt-2" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+       
+        <div class="mb-3 d-flex w-100 gap-2 align-items-center">
+            
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">{{form.store_name.label_tag}}</label>
+                {{form.store_name}}
+            </div>
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">{{form.phone_number_store.label_tag}}</label>
+                {{form.phone_number_store}}
+            </div>
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">{{form.email_store.label_tag}}</label>
+                {{form.email_store}}
+            </div>
+        </div>
+        <div class="mb-3 d-flex w-100 gap-2 align-items-center">
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">{{form.store_open_time.label_tag}}</label>
+                {{form.store_open_time}}
+            </div>
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">{{form.store_closed_time.label_tag}}</label>
+                {{form.store_closed_time}}
+            </div>
+        </div>        
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">{{form.store_description.label_tag}}</label>
+            {{form.store_description}}
+        </div>
+        
+        
+
+        <button type="submit" class="btn w-100 text-white mb-3 border-0" style="background-color: #0e0d23;">Submit</button>
+
+        <div class="offcanvas bg-transparent offcanvas-bottom h-100" tabindex="-1" id="offcanvasBottom"
+            aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header bg-transparent">
+                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body bg-white small" style="border-top-left-radius: 20px;">
+                <div class="container py-4 ">
+                    <div class="addmorediv">
+
+                        <h2>Spesification</h2>
+                        <div class="mb-3 mt-3 d-flex w-100 gap-2 align-items-center">
+                            <div class="flex-fill">
+                                <label for="exampleInputEmail1" class="form-label cekform">Name Spesification:</label>
+                                {{form.spesification}}
+                            </div>
+                            <div class="flex-fill">
+                                <label for="exampleInputEmail1" class="form-label">Values Spesification:</label>
+                                {{form.valuespesification}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="addmore()">add more</button>
                 </div>
-                                {% endfor %}
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function addmore() {
+        const cekform = document.querySelectorAll('.cekform');
 
-                {% endfor %}
+        if (cekform.length < 5) {
+            document.querySelector('.addmorediv').innerHTML += `
+        <div class="mb-3 mt-3 d-flex w-100 gap-2 align-items-center">
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label cekform">Name Spesification:</label>
+                {{form.spesification}}
+            </div>
+            <div class="flex-fill">
+                <label for="exampleInputEmail1" class="form-label">Values Spesification:</label>
+                {{form.valuespesification}}
+            </div>
+        </div>
+        `;
+        } else {
 
-                {% endif %}
+        }
+    }
 
 
-    {{form}}
-<button type="submit">submit</button>
-</form>
+</script>
 {% endblock contains %}

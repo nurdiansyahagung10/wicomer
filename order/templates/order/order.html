@@ -2,43 +2,46 @@
 {% load static %}
 {% block contains %}
 {% load filter_tags %}
+
+
 <style>
-    .form-control:focus {
-        border: 1px solid rgba(234, 100, 217, 0.4) !important;
-        box-shadow: 0 0 0 4px rgba(234, 100, 217, 0.1) !important;
+    .form-control:focus, .form-check-input:checked,.form-check-input:focus{
+        border: 1px solid #e380356c !important;
+        box-shadow:  0 0 0 4px #e380351e !important;
     }
 </style>
 
 
 
-
-<div style="height: 100vh;" class="d-flex flex-column">
-    <div class="container flex-fill">
-        <div class="d-flex py-3 px-2 position-sticky top-0 bg-white align-items-center justify-content-between">
-            <button class="btn px-0 border-0">
+<div style="height: 100vh;" >
+    <div class="container h-100">
+        <form method="post" class="d-flex flex-column h-100">
+            {% csrf_token %}
+        <div class="d-flex py-3 px-2 position-sticky top-0 align-items-center justify-content-between" style="background-color: #292b31;">
+            <button type="button" class="btn px-0 text-white border-0">
                 <i class="fa-regular fs-5 fa-arrow-left"></i>
             </button>
-            <span class="fs-5 fw-bold" id="text-nav">Custom Pesanan</span>
+            <span class="fs-5 " style="font-weight: 500;" id="text-nav">Custom Order</span>
         </div>
         <div class="py-3 px-2 d-flex align-items-center border-bottom justify-content-between">
-            <span class="fw-bold">{{Product}}</span>
-            <span>15.000</span>
+            <span style="font-weight: 500;">{{Product}}</span>
+            <span id="price">{{Product.price_product}}</span>
         </div>
 
-        {% for spesification in Product.spesificationproduct_set.all %}
+        {% for spesification in Product.productspesification_set.all %}
 
         <div style="border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dee2e6;  "
             class="py-3 px-2 d-flex flex-column">
-            <span class=" fw-bold">{{spesification}}</span>
-            <small><span style="color: rgba(234,100,217,0.4);">require</span> • <span>Choose one </span></small>
+            <span style="font-weight: 500;">{{spesification}}</span>
+            <input type="hidden" name="spesification" value="{{spesification}}">
+            <small><span style="color: #e38035;">require</span> • <span>Choose one </span></small>
         </div>
         <div class="border-bottom">
-
             {% for values in spesification.spesificationvalue_set.all %}
-            {% for value in values.value_Spesification|split:"," %}
+            {% for value in values.name_value|split:"," %}
             <div class="py-3 px-2 d-flex align-items-center justify-content-between">
                 <label>{{value}}</label>
-                <input type="radio" name="{{spesification}}" id="">
+                <input type="radio" name="{{spesification}}value" value="{{value}}" id="">
             </div>
             {% endfor %}
             {% endfor %}
@@ -48,20 +51,19 @@
 
         <div class="py-3 px-2 d-flex align-items-end justify-content-between">
             <div class="d-flex flex-column">
-                <span class=" fw-bold"> <span><i class="fa-solid fa-note"></i></span>
+                <span style="font-weight: 500;"> <span><i class="fa-solid fa-note"></i></span>
                     Notes</span>
-                <small><span>Optional</span></small>
+                <small><span class="text-secondary">Optional</span></small>
             </div>
 
             <div class="text-secondary small">
                 <span id="notelength">0</span>/<span>200</span>
             </div>
         </div>
-        <div>
-            <form class="position-relative">
-                <textarea name="" id="id_noted" class="form-control text-secondary"
-                    style="font-size: 0.8rem !important;"></textarea>
-            </form>
+        <div class="flex-fill">
+            <div class="position-relative ">
+                <textarea name="notes" id="id_noted" class="form-control text-black" style="font-size: small;"></textarea>
+            </div>
         </div>
 
         <script>
@@ -72,45 +74,58 @@
                 console.log(inputnote.value.length);
             });
         </script>
-        <div class=" py-3 mt-3 border-top z-3">
-            <div class="d-flex align-items-center mb-3 justify-content-between">
+        <div class=" py-3 mt-3 border-top z-3 postion-sticky bottom-0">
+            <div class="d-flex align-items-center  mb-3 justify-content-between">
                 <span>Quantity</span>
                 <div class="align-items-center d-flex gap-3">
-                    <button class="rounded-circle btn-sm btn border" onclick="kurang()">
+                    <button type="button" class="rounded-circle btn-sm btn border text-white" onclick="kurang()">
                         <span>
                             <i class="fa-regular fa-minus"></i>
                         </span>
                     </button>
                     <span id="quantity">1</span>
-                    <button onclick="tambah()" class="rounded-circle btn-sm btn border">
+                    <button type="button" onclick="tambah()" class="rounded-circle btn-sm btn border text-white">
                         <span>
                             <i class="fa-regular fa-plus"></i>
                         </span>
                     </button>
+                    <input type="hidden" name="qty" id="quantity-input">
+                    <input type="hidden" name="price" id="price-input">
                 </div>
             </div>
-            <button class="w-100 btn btn-dark rounded-5" style="background-color: #0e0d23;">
-                Checkout
+            <button class="w-100 btn bg-black text-white border-0 rounded-5" type="submit"  id="submit">
+                Submit
             </button>
         </div>
+    </form>
     </div>
 </div>
 
 
 <script>
+    var quantity = document.getElementById('quantity');
+
+    document.getElementById('submit').addEventListener('click', function(){
+        const quantityinput = document.getElementById('quantity-input');
+        quantityinput.value = quantity.textContent;
+        const priceinput = document.getElementById('price-input');
+        const price = document.getElementById('price');
+        priceinput.value = price.textContent;
+        
+    });
+
     window.addEventListener('scroll', function () {
         var fromTop = window.scrollY;
         if (fromTop > 20) {
             document.getElementById("text-nav").textContent = '{{Product}}';
         } else {
-            document.getElementById("text-nav").textContent = 'Custom Pesanan';
+            document.getElementById("text-nav").textContent = 'Custom Order';
 
         }
     });
 
 
     function tambah() {
-        var quantity = document.getElementById('quantity');
         const hasil = eval(`${quantity.textContent} + 1`);
         quantity.textContent = hasil;
     }

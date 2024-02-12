@@ -4,8 +4,8 @@ from accounts.models import Store
 
 class product(models.Model):
     store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
-    name_product = models.CharField(max_length=255, unique=True)
-    description = models.TextField()
+    name_product = models.CharField(max_length=100, unique=True)
+    description_product = models.TextField()
     CATEGORY_CHOICES = (
         ('', ''),
         ('food', 'Food'),
@@ -33,36 +33,38 @@ class product(models.Model):
         ('top_up_games', 'Top Up Games'),
         ('home_decoration', 'Home Decoration')
     )
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='')    
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    qty = models.IntegerField()
-    upload_date = models.DateTimeField(auto_now_add=True)
+    category_product = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='')    
+    price_product = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity_product = models.IntegerField(default = 0)
+    total_sales = models.IntegerField(default = 0)
     KIND_CHOICHES = (
         ('', ''),
         ('new', 'New'),
         ('former', 'Former'),
     )
-    # kind = models.CharField(max_length=50, choices=KIND_CHOICHES, default='')
-    pre_order = models.BooleanField(default = 'False')
+    kind = models.CharField(max_length=50, choices=KIND_CHOICHES, default='')
+    pre_order_date = models.DateField(blank=True, null=True)
+    created_at = models.DateTimeField( auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.name_product
 
-class SpesificationProduct(models.Model):
-    product = models.ForeignKey(product, on_delete=models.CASCADE)
+class ProductSpesification(models.Model):
+    product_id = models.ForeignKey(product, on_delete=models.CASCADE)
     name_Spesification = models.CharField(max_length=50)
     def __str__(self):
         return self.name_Spesification
 
 class SpesificationValue(models.Model):
-    spesification = models.ForeignKey(SpesificationProduct, on_delete=models.CASCADE)
-    value_Spesification = models.CharField(max_length=50)
+    spesification_id = models.ForeignKey(ProductSpesification, on_delete=models.CASCADE)
+    name_value = models.CharField(max_length=50)
     def __str__(self):
-        return self.value_Spesification
+        return self.name_value
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images/')
+    product_id = models.ForeignKey(product, on_delete=models.CASCADE)
+    name_image = models.ImageField(upload_to='product_images/')
 
     def __str__(self):
-            return f"Image for {self.product.name_product}"
+            return f"Image for {self.product_id.name_product}"

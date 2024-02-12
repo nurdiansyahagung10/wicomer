@@ -13,29 +13,27 @@ from .models import Store
 
 def createstore(request):
     try:
-        Store.objects.get(store_seller_id = request.user)
+        Store.objects.get(seller_id = request.user)
         return redirect('dashboardstore')
     except Store.DoesNotExist:
         form = StoreForm()    
     if request.method == 'POST':
         form = StoreForm(request.POST)
         if form.is_valid():
-            store_image = form.cleaned_data.get('store_image')
-            phonenumber = form.cleaned_data.get('phonenumber')
-            email = form.cleaned_data.get('email')
+            phone_number_store = form.cleaned_data.get('phone_number_store')
+            email_store = form.cleaned_data.get('email_store')
             store_name = form.cleaned_data.get('store_name')
             store_description = form.cleaned_data.get('store_description')
-            store_open = form.cleaned_data.get('store_open')
-            store_closed = form.cleaned_data.get('store_closed')
+            store_open_time = form.cleaned_data.get('store_open_time')
+            store_closed_time = form.cleaned_data.get('store_closed_time')
             store = Store(
-                store_seller_id = request.user,
-                store_image = store_image,
-                phonenumber = phonenumber,
-                email = email,
+                seller_id = request.user,
+                phone_number_store = phone_number_store,
+                email_store = email_store,
                 store_name = store_name,
                 store_description = store_description,
-                store_open = store_open,
-                store_closed = store_closed,
+                store_open_time = store_open_time,
+                store_closed_time = store_closed_time,
             )            
             store.save()
             return redirect('dashboardstore')
@@ -54,11 +52,11 @@ class CustomInitialResetPassword(PasswordResetView):
     success_url = reverse_lazy("signin")
 
     def dispatch(self, request, *args, **kwargs):
-        self.email = kwargs.get('email')
-        email_decode = urlsafe_base64_decode(self.email)
+        self.email_address = kwargs.get('email_address')
+        email_address_decode = urlsafe_base64_decode(self.email_address)
         User = get_user_model()
         try:
-            user = User.objects.get(email=email_decode.decode())
+            user = User.objects.get(email_address=email_address_decode.decode())
         except (
             TypeError,
             ValueError,
@@ -84,10 +82,10 @@ def ForgotAccountsViews(request):
     if request.method == 'POST':
         form = ForgotAccountForms(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
-            if email is not None:
-                uid = urlsafe_base64_encode(str(email).encode('utf-8'))
-                return redirect('forgot_accounts_initiate', email = uid)
+            email_address = form.cleaned_data.get('email_address')
+            if email_address is not None:
+                uid = urlsafe_base64_encode(str(email_address).encode('utf-8'))
+                return redirect('forgot_accounts_initiate', email_address = uid)
                 
     return render(request, 'accounts/forgot_accounts_or_password.html', {'form' : form})
 
@@ -111,11 +109,11 @@ def SignUpView(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
+            email_address = form.cleaned_data.get('email_address')
             date_of_birth = form.cleaned_data.get('date_of_birth')
             password = form.cleaned_data.get('password1')
             User = get_user_model()
-            user = User(username = username, email = email, date_of_birth =date_of_birth)
+            user = User(username = username, email_address = email_address, date_of_birth =date_of_birth)
             user.set_password(password)
             user.save()
             return redirect ('signin')
