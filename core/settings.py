@@ -91,7 +91,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         "NAME": "wicodb",
-        "USER": "nurdiansyahagung",
+        "USER": "root",
         "PASSWORD": "kumahaweh123",
         "HOST": "nurdiansyahagung10.mysql.pythonanywhere-services.com",
     }
