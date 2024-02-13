@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
-# import dj_database_url
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-xhy7%xc2j#_=*20)%zr2xlsqg5lqm+&a6&&#=k%8)jxbk7z^!6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nurdiansyahagung10.pythonanywhere.com',]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,10 +89,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "NAME": "nurdiansyahagung$wicodb",
-        "USER": "nurdiansyahagung",
+        "NAME": "wicodb",
+        "USER": "root",
         "PASSWORD": "kumahaweh123",
-        "HOST": "nurdiansyahagung10.mysql.pythonanywhere-services.com",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
     }
 }
 
@@ -125,11 +125,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static')
+    BASE_DIR / "static",
 ]
+
+
+import os
 
 
 MEDIA_URL = 'media/'

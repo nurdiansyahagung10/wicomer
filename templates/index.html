@@ -682,7 +682,7 @@
     </div>
   </div>
 
-  <div class="position-absolute row w-100 bottom-0 mb-5 mb-sm-2">
+  <div class="position-fixed row w-100 bottom-0 mb-4 mb-sm-2">
     <div class="col-lg-3 col-sm-2 d-sm-block d-none"></div>
     <div class="col-lg-6 col-sm-8 col-12 pb-sm-2 pb-5  d-flex justify-content-center"
       style="padding-left: 13px; padding-right: 13px;">
@@ -700,37 +700,36 @@
 
 
 <footer class="w-100 position-fixed d-sm-none z-3 bottom-0 " >
-  <div class="  d-flex align-items-end pb-2 rounded-top-5 justify-content-around p-2 gap-2 w-100" style="background-color: #141519; height: 65px;">
+  <div class="  d-flex align-items-end shadow pb-2 rounded-top-5 justify-content-around p-2 gap-2 w-100" style="background-color: #141519; height: 55px;">
     <div class="d-flex flex-column align-items-center">
       <span>
-        <i class="fa-solid fa-house-blank fs-5"></i>
+        <i class="  fa-solid fa-house-blank "></i>
       </span>
-      <span class="small text-secondary">Home</span>
+      <span style="line-height: 14px; color: #e38035;" class="small ">Home</span>
     </div>
 <div class="d-flex flex-column align-items-center">
   <span>
-    <i class="fa-light fa-magnifying-glass fs-5"> </i> </span>
-<span class="small text-secondary">Search</span>
+    <i class="  fa-light fa-magnifying-glass "> </i> </span>
+<span style="line-height: 14px;" class="small text-secondary">Search</span>
 </div>
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center" >
   <span style="background-color: #363841;  width: 55px; height: 55px;" class="rounded-circle d-flex align-items-center justify-content-center" >
-    <i class="fa-light fa-file-pen fs-5"></i>
+    <i class=" fs-5 fa-light fa-file-pen "></i>
   </span>
-<span class="small" style="color: #e38035;">Order</span>
-</div>
+</div> 
 <div class="d-flex flex-column align-items-center">
   <span>
-    <i class="fa-light fa-message-lines fs-5"></i>
+    <i class="  fa-light fa-message-lines "></i>
   </span>
-<span class="small text-secondary">Message</span>
+<span style="line-height: 14px;" class="small text-secondary">Message</span>
 </div>
 <div class="d-flex flex-column align-items-center">
   <a href="{% url 'storecreate' %}">
-    <div class="rounded-circle overflow-hidden " style="width: 34px; height: 34px;">
+    <div class="rounded-circle overflow-hidden " style="width: 28.5px; height: 28.5px;">
       <img src="{% static 'img/default profil.svg' %}" class="img-fluid " alt="">
     </div>
   </a>
-<span style="line-height: 18px;" class="small text-secondary">
+<span style="line-height: 12px;" class="small text-secondary">
   profile
 </span>
 </div>
@@ -813,7 +812,9 @@
           <div>
             <button class="btn border text-white  rounded-5 "><i class="fa-light fa-heart"></i></button>
           </div>
-          <button class="btn text-white rounded-5 btn-msg-owner border-0 bg-black"><span>message</span></button>
+          <div>
+            <button class="btn text-white rounded-5 btn-msg-owner border-black bg-black"><span>message</span></button>
+          </div>
         </div>
 
       </div>

@@ -8,7 +8,7 @@ class AuthenticateUsernameOrEmailBackend(ModelBackend):
         if username is not None:
             try:
                 if '@' in username:
-                    user = User.objects.get(email_address = username)
+                    user = User.objects.get(email = username)
                     return user
                 else :
                     user = User.objects.get(username = username)
